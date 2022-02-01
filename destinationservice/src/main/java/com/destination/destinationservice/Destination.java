@@ -2,6 +2,9 @@ package com.destination.destinationservice;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import org.springframework.web.bind.annotation.RestController;
+
 import javax.persistence.Column;
 
 
@@ -12,6 +15,7 @@ import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "destinations")
+@RestController
 public class Destination {
 
     @Id

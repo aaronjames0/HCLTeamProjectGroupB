@@ -51,7 +51,7 @@ public class RecommendServiceImp implements RecommendService {
     @Override
     public List<Recommend> getAllRecommend()
     {
-        return (List<Recommend>) recommendRepo.findAll();
+        return this.recommendRepo.findAll();
     }
 
 

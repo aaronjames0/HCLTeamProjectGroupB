@@ -2,14 +2,14 @@ package com.composite.compositeservice;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import java.util.List;
+
 import javax.persistence.Column;
 
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Entity
@@ -42,16 +42,82 @@ public class Composite {
     private String image;
 
     @Column(name = "reviews")
-    private long[] reviews;
+    private Review[] reviews;
 
     @Column(name = "recommendations")
-    private long[] recommendations;
+    private Recommend[] recommendations;
 
     public long getDestId() {
-        return 0;
+        return destId;
     }
 
     public void setDestId(long destId) {
         this.destId = destId;
     }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    /*
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Recommend> getRecommendations() {
+        return recommendations;
+    }
+
+    public void setRecommendations(List<Recommend> recommendations) {
+        this.recommendations = recommendations;
+    }
+    */
 }

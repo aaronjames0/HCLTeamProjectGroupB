@@ -61,9 +61,9 @@ public class RecommendController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<Recommend> getAllRecommend()
+    public ResponseEntity<List<Recommend>> getAllRecommend()
     {
-        return recommendService.getAllRecommend();
+        return ResponseEntity.ok().body(recommendService.getAllRecommend());
     }
 
     @PutMapping("/update/{id}")

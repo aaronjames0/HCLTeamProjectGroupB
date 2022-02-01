@@ -1,29 +1,8 @@
-package com.example.Recommendmicroservice.Entity;
+package com.composite.compositeservice;
 
-/*
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-*/
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.springframework.web.bind.annotation.RestController;
-
-@Entity
-@Table(name = "recommendations")
-@RestController
 public class Recommend {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long destId;
     private Long recommendationId;
-
-    private Long destId;
     private String author;
     private String content;
     private int rate;

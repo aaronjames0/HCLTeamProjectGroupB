@@ -11,41 +11,68 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/destinations")
 public class DestinationController {
     
     @Autowired
     private DestinationService destinationService;
 
-    @GetMapping("/destinations/count")
-    public int getCount() {
-        return 5;
+    @GetMapping("/place/{id}")
+    public String getDestPlace(@PathVariable long id) {
+        return destinationService.getDestinationById(id).getPlace();
     }
 
-    @GetMapping("/destinations")
+    @GetMapping("/country/{id}")
+    public String getDestCountry(@PathVariable long id) {
+        return destinationService.getDestinationById(id).getCountry();
+    }
+
+    @GetMapping("/latitude/{id}")
+    public Double getDestLatitude(@PathVariable long id) {
+        return destinationService.getDestinationById(id).getLatitude();
+    }
+
+    @GetMapping("/longitude/{id}")
+    public Double getDestLongitude(@PathVariable long id) {
+        return destinationService.getDestinationById(id).getLongitude();
+    }
+
+    @GetMapping("/info/{id}")
+    public String getDestInfo(@PathVariable long id) {
+        return destinationService.getDestinationById(id).getInfo();
+    }
+
+    @GetMapping("/image/{id}")
+    public String getDestImage(@PathVariable long id) {
+        return destinationService.getDestinationById(id).getImage();
+    }
+
+    @GetMapping("/all")
     public ResponseEntity<List<Destination>> getAllDestination() {
         return ResponseEntity.ok().body(destinationService.getAllDestinations());
     }
 
-    @GetMapping("/destinations/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Destination> getDestinationById(@PathVariable long id) {
         return ResponseEntity.ok().body(destinationService.getDestinationById(id));
     }
 
-    @PostMapping("/destinations")
+    @PostMapping("/add")
     public ResponseEntity<Destination> createDestination(@RequestBody Destination destination) {
         return ResponseEntity.ok().body(this.destinationService.createDestination(destination));
     }
 
-    @PutMapping("/destinations/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Destination> updateDestination(@PathVariable long id, @RequestBody Destination destination) {
         destination.setDestId(id);
         return ResponseEntity.ok().body(this.destinationService.updateDestination(destination));
     }
 
-    @DeleteMapping("/destinations/{id}")
+    @DeleteMapping("/delete/{id}")
     public HttpStatus deleteDestination(@PathVariable long id) {
         this.destinationService.deleteDestination(id);
         return HttpStatus.OK;
