@@ -19,6 +19,11 @@ public class DestinationController {
     @Autowired
     private DestinationService destinationService;
 
+    @GetMapping("/destinations/count")
+    public int getCount() {
+        return 5;
+    }
+
     @GetMapping("/destinations")
     public ResponseEntity<List<Destination>> getAllDestination() {
         return ResponseEntity.ok().body(destinationService.getAllDestinations());
