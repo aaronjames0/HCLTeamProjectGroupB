@@ -21,30 +21,27 @@ public class RecommendController {
     @Autowired
     RecommendService recommendService;
 
+    RestTemplate restTemplate = new RestTemplate();
 
+    @GetMapping("/{id}")
+    public Optional<Recommend> getRecommendById(@PathVariable long id)
+    {
+        return recommendService.getRecommendById(id);
+    }
 
-     RestTemplate restTemplate = new RestTemplate();
-
-     @GetMapping("/{id}")
-     public Optional<Recommend> getRecommendById(@PathVariable("id") long recommendationId)
-     {
-         return recommendService.getRecommendById(recommendationId);
-     }
-
-     @RequestMapping("/destination/{destId}")
-     public long[] getReviewIds(@PathVariable long destId) {
-         List<Recommend> recList = recommendService.getAllRecommend();
-         for(int i = 0; i < recList.size(); i++) {
-             if(recList.get(0).getDestId() == destId) continue;
-             else recList.remove(i);
-         }
-         long[] recIds = new long[recList.size()];
-         for(int i = 0; i < recList.size(); i++) {
-             recIds[i] = recList.get(i).getRecommendationId();
-         }
-         return recIds;
-     }
-
+    @RequestMapping("/destination/{destId}")
+    public long[] getReviewIds(@PathVariable long destId) {
+        List<Recommend> recList = recommendService.getAllRecommend();
+        for(int i = 0; i < recList.size(); i++) {
+            if(recList.get(0).getDestId() == destId) continue;
+            else recList.remove(i);
+        }
+        long[] recIds = new long[recList.size()];
+        for(int i = 0; i < recList.size(); i++) {
+            recIds[i] = recList.get(i).getRecommendationId();
+        }
+        return recIds;
+    }
 
     @PostMapping("/post")
     public Recommend addRecommend(@RequestBody Recommend recommend)
@@ -52,8 +49,8 @@ public class RecommendController {
         return recommendService.addRecommend(recommend);
     }
 
-    
     private static final String MAIN_SERVICE = "mainService";
+
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     @CircuitBreaker(name = MAIN_SERVICE, fallbackMethod="testFallBack")
@@ -62,10 +59,9 @@ public class RecommendController {
         return new ResponseEntity<String>(response, HttpStatus.OK);
 
     }
+
     private ResponseEntity<String> testFallBack(Exception e){
         return new ResponseEntity<String>("In fallback method", HttpStatus.INTERNAL_SERVER_ERROR);}
-    
-
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Recommend>> getAllRecommend()
@@ -79,13 +75,10 @@ public class RecommendController {
         return recommendService.updateRecommend(recommend,recommendationId);
     }
 
-
     @DeleteMapping("/delete/{id}")
     public String deleteRecommend(@PathVariable("id") long recommendationId)
     {
         recommendService.deleteRecommendById(recommendationId);
         return "Recommend of ID " + recommendationId +" is deleted.";
     }
-
-
 }
