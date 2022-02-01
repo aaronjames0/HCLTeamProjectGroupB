@@ -3,7 +3,7 @@ package com.composite.compositeservice;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import java.util.List;
+//import java.util.List;
 
 import javax.persistence.Column;
 

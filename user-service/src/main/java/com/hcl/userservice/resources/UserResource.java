@@ -4,17 +4,17 @@ import com.hcl.userservice.models.User;
 import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.InsertOneResult;
+//import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
-import javax.ws.rs.Path;
-import java.util.Arrays;
+//import javax.validation.Valid;
+//import javax.ws.rs.Path;
+//import java.util.Arrays;
 import java.util.List;
 
 @RestController

@@ -4,7 +4,7 @@ import com.example.Recommendmicroservice.Entity.Recommend;
 import com.example.Recommendmicroservice.Service.RecommendService;
 //import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+//import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +40,8 @@ public class RecommendController {
         return recommendService.addRecommend(recommend);
     }
 
-
+    /*
     private static final String MAIN_SERVICE = "mainService";
-
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
     @CircuitBreaker(name = MAIN_SERVICE, fallbackMethod="testFallBack")
@@ -53,11 +52,7 @@ public class RecommendController {
     }
     private ResponseEntity<String> testFallBack(Exception e){
         return new ResponseEntity<String>("In fallback method", HttpStatus.INTERNAL_SERVER_ERROR);}
-
-
-
-
-
+    */
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
