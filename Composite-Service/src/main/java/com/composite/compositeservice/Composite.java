@@ -47,6 +47,17 @@ public class Composite {
     @Column(name = "recommendations")
     private Recommend[] recommendations;
 
+    @Column(name = "temp")
+    private long[] temp;
+
+    public long[] getTemp() {
+        return temp;
+    }
+
+    public void setTemp(long[] temp) {
+        this.temp = temp;
+    }
+
     public long getDestId() {
         return destId;
     }

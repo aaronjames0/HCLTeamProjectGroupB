@@ -14,6 +14,7 @@ public class CompositeController {
 
     private RestTemplate restTemplate = new RestTemplate();
     //private List<Review> reviews = new ArrayList<Review>();
+    
 
     @GetMapping("/destinations/comp/{id}")
     public ResponseEntity<Composite> createComposite(@PathVariable long id) {
@@ -25,7 +26,7 @@ public class CompositeController {
         comp.setLongitude(restTemplate.getForObject("http://localhost:8080/destinations/longitude/" + String.valueOf(id), Double.class));
         comp.setInfo(restTemplate.getForObject("http://localhost:8080/destinations/info/" + String.valueOf(id), String.class));
         comp.setImage(restTemplate.getForObject("http://localhost:8080/destinations/image/" + String.valueOf(id), String.class));
-        
+        comp.setTemp(restTemplate.getForObject("http://localhost:8081/reviews/destination/" + String.valueOf(id), long[].class));
         return ResponseEntity.ok().body(comp);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,9 +23,19 @@ public class ReviewController {
         return repo.findByAuthor(author);
     }
 
-    @RequestMapping("/destination/{destId}")
+    @RequestMapping("/destination/all/{destId}")
     public List<Review> getReviewsByDestination(@PathVariable long destId) {
         return repo.findByDestId(destId);
+    }
+
+    @RequestMapping("/destination/{destId}")
+    public long[] getReviewIds(@PathVariable long destId) {
+        List<Review> reviewList = repo.findByDestId(destId);
+        long[] reviews = new long[reviewList.size()];
+        for(int i = 0; i < reviewList.size(); i++) {
+            reviews[i] = reviewList.get(i).getReviewId();
+        }
+        return reviews;
     }
 
     @RequestMapping("/{reviewId}")
