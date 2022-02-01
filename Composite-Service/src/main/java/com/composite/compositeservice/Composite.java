@@ -1,134 +1,38 @@
 package com.composite.compositeservice;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
-//import java.util.List;
-
-import javax.persistence.Column;
-
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-
-@Entity
-@Table(name = "composite")
 public class Composite {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long compId;
+    private Destination destination;
 
-    @Column(name = "destId")
-    private long destId;
+    private List<Review> reviews  = new ArrayList<Review>();
 
-    @Column(name = "place")
-    private String place;
-    
-    @Column(name = "country")
-    private String country;
+    private List<Recommend> recommendations = new ArrayList<Recommend>();
 
-    @Column(name = "latitude")
-    private double latitude;
-
-    @Column(name = "longitude")
-    private double longitude;
-
-    @Column(name = "info")
-    private String info;
-
-    @Column(name = "image")
-    private String image;
-
-    @Column(name = "reviews")
-    private Review[] reviews;
-
-    @Column(name = "recommendations")
-    private Recommend[] recommendations;
-
-    @Column(name = "temp")
-    private long[] temp;
-
-    public long[] getTemp() {
-        return temp;
+    public Destination getDestination() {
+        return destination;
     }
 
-    public void setTemp(long[] temp) {
-        this.temp = temp;
+    public void setDestination(Destination destination) {
+        this.destination = destination;
     }
 
-    public long getDestId() {
-        return destId;
-    }
-
-    public void setDestId(long destId) {
-        this.destId = destId;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    /*
     public List<Review> getReviews() {
         return reviews;
     }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    
+    public void addReview(Review review) {
+        reviews.add(review);
     }
-
+    
     public List<Recommend> getRecommendations() {
         return recommendations;
     }
 
-    public void setRecommendations(List<Recommend> recommendations) {
-        this.recommendations = recommendations;
+    public void addRec(Recommend recommendation) {
+        recommendations.add(recommendation);
     }
-    */
+    
 }

@@ -4,7 +4,7 @@ import com.example.Recommendmicroservice.Entity.Recommend;
 import com.example.Recommendmicroservice.Service.RecommendService;
 //import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-//import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,19 @@ public class RecommendController {
          return recommendService.getRecommendById(recommendationId);
      }
 
-
+     @RequestMapping("/destination/{destId}")
+     public long[] getReviewIds(@PathVariable long destId) {
+         List<Recommend> recList = recommendService.getAllRecommend();
+         for(int i = 0; i < recList.size(); i++) {
+             if(recList.get(0).getDestId() == destId) continue;
+             else recList.remove(i);
+         }
+         long[] recIds = new long[recList.size()];
+         for(int i = 0; i < recList.size(); i++) {
+             recIds[i] = recList.get(i).getRecommendationId();
+         }
+         return recIds;
+     }
 
 
     @PostMapping("/post")
@@ -40,7 +52,7 @@ public class RecommendController {
         return recommendService.addRecommend(recommend);
     }
 
-    /*
+    
     private static final String MAIN_SERVICE = "mainService";
     @GetMapping("/test")
     @ResponseStatus(HttpStatus.OK)
@@ -52,7 +64,7 @@ public class RecommendController {
     }
     private ResponseEntity<String> testFallBack(Exception e){
         return new ResponseEntity<String>("In fallback method", HttpStatus.INTERNAL_SERVER_ERROR);}
-    */
+    
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
