@@ -44,6 +44,16 @@ public class DestinationServiceImpl implements DestinationService{
     }
 
     @Override
+    public Destination[] getAllDestinationIds() {
+        List<Destination> dest = getAllDestinations();
+        Destination[] dests = new Destination[dest.size()];
+        for(int i = 0; i < dest.size(); i++) {
+            dests[i] = dest.get(i);
+        }
+        return dests;
+    }
+
+    @Override
     public Destination getDestinationById(long destinationId) {
         Optional<Destination> destinationDb = this.destinationRepo.findById(destinationId);
         if(destinationDb.isPresent()) {

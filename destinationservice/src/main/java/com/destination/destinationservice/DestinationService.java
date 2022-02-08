@@ -9,6 +9,8 @@ public interface DestinationService {
 
     List<Destination> getAllDestinations();
 
+    Destination[] getAllDestinationIds();
+
     Destination getDestinationById(long destId);
     
     void deleteDestination(long destId);

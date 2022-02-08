@@ -21,39 +21,14 @@ public class DestinationController {
     @Autowired
     private DestinationService destinationService;
 
-    @GetMapping("/place/{id}")
-    public String getDestPlace(@PathVariable long id) {
-        return destinationService.getDestinationById(id).getPlace();
-    }
-
-    @GetMapping("/country/{id}")
-    public String getDestCountry(@PathVariable long id) {
-        return destinationService.getDestinationById(id).getCountry();
-    }
-
-    @GetMapping("/latitude/{id}")
-    public Double getDestLatitude(@PathVariable long id) {
-        return destinationService.getDestinationById(id).getLatitude();
-    }
-
-    @GetMapping("/longitude/{id}")
-    public Double getDestLongitude(@PathVariable long id) {
-        return destinationService.getDestinationById(id).getLongitude();
-    }
-
-    @GetMapping("/info/{id}")
-    public String getDestInfo(@PathVariable long id) {
-        return destinationService.getDestinationById(id).getInfo();
-    }
-
-    @GetMapping("/image/{id}")
-    public String getDestImage(@PathVariable long id) {
-        return destinationService.getDestinationById(id).getImage();
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<Destination>> getAllDestination() {
         return ResponseEntity.ok().body(destinationService.getAllDestinations());
+    }
+
+    @GetMapping("/all/ids")
+    public ResponseEntity<Destination[]> getAllDestinationIds() {
+        return ResponseEntity.ok().body(destinationService.getAllDestinationIds());
     }
 
     @GetMapping("/{id}")
