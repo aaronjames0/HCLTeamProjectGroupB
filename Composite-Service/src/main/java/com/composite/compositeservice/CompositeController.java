@@ -3,6 +3,8 @@ package com.composite.compositeservice;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ public class CompositeController {
     private RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/destination/{destId}")
+    @CircuitBreaker(name = "getdestination",fallbackMethod = "fall")
     public ResponseEntity<Composite> createComposite(@PathVariable long destId) {
         Composite comp = new Composite();
         comp.destination = restTemplate.getForObject("http://localhost:8080/destinations/" + destId, Destination.class);
@@ -32,6 +35,7 @@ public class CompositeController {
     }
 
     @GetMapping("/user/{userId}")
+    @CircuitBreaker(name="getuser",fallbackMethod = "fall")
     public ResponseEntity<List<Composite>> getUserComposite(@PathVariable long userId) {
         List<Composite> comps = new ArrayList<Composite>();
         Destination[] dests = restTemplate.getForObject("http://localhost:8080/destinations/all", Destination[].class);
@@ -50,4 +54,7 @@ public class CompositeController {
         }
         return ResponseEntity.ok().body(comps);
     }
+
+    private ResponseEntity<String> fall(Exception e){
+        return new ResponseEntity<String>("In fallback method", HttpStatus.INTERNAL_SERVER_ERROR);}
 }

@@ -104,6 +104,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>Recommend-microservice-0.0.1-SNAPSHOT</finalName>
 	</build>
 
 </project>
