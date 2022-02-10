@@ -2,12 +2,12 @@ package com.composite.compositeservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-@EnableEurekaServer
-public class CompositeserviceApplication {
+@EnableDiscoveryClient
+public class CompositeServiceApplication {
 		public static void main(String[] args) {
-		SpringApplication.run(CompositeserviceApplication.class, args);
+		SpringApplication.run(CompositeServiceApplication.class, args);
 	}
 }

@@ -2,14 +2,14 @@ package com.destination.destinationservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-@EnableEurekaClient
-public class DestinationserviceApplication {
+@EnableDiscoveryClient
+public class DestinationServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DestinationserviceApplication.class, args);
+		SpringApplication.run(DestinationServiceApplication.class, args);
 	}
 
 }

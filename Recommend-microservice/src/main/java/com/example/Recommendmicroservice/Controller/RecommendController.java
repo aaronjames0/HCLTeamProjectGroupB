@@ -2,15 +2,12 @@ package com.example.Recommendmicroservice.Controller;
 
 import com.example.Recommendmicroservice.Entity.Recommend;
 import com.example.Recommendmicroservice.Service.RecommendService;
-//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
 import java.util.Optional;
 
