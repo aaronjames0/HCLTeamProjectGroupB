@@ -62,18 +62,15 @@ public class CompositeController {
     }
 
     public String getDestUrl() {
-        ServiceInstance instance = loadBalancerClient.choose("destination-service");
-        return instance.getUri().toString();
+        return System.getenv("DESTINATION_URL");
     }
 
     public String getRecUrl() {
-        ServiceInstance instance = loadBalancerClient.choose("recommend-service");
-        return instance.getUri().toString();
+        return System.getenv("RECOMMEND_URL");
     }
 
     public String getRevUrl() {
-        ServiceInstance instance = loadBalancerClient.choose("review-service");
-        return instance.getUri().toString();
+        return System.getenv("REVIEW_URL");
     }
 
     private ResponseEntity<String> fall(Exception e){
