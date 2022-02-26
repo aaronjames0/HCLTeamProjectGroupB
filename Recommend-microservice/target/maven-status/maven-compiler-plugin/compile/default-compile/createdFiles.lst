@@ -1,0 +1,9 @@
+com\example\Recommendmicroservice\Mapper\RecommendMapper.class
+com\example\Recommendmicroservice\MapStructDTO\RecommendDTO.class
+com\example\Recommendmicroservice\Mapper\RecommendMapperImpl.class
+com\example\Recommendmicroservice\Entity\Recommend.class
+com\example\Recommendmicroservice\Controller\RecommendController.class
+com\example\Recommendmicroservice\RecommendServiceApplication.class
+com\example\Recommendmicroservice\Repository\RecommendRepo.class
+com\example\Recommendmicroservice\Service\RecommendService.class
+com\example\Recommendmicroservice\Service\RecommendServiceImp.class
