@@ -1,5 +1,6 @@
 package com.hcl.userservice;
 
+import com.hcl.userservice.mapper.UserMapper;
 import com.hcl.userservice.models.User;
 import com.hcl.userservice.repositories.UserRepository;
 import com.mongodb.client.MongoClient;
