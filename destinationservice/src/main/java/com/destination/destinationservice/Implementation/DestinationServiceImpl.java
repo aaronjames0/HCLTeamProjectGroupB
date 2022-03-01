@@ -65,7 +65,9 @@ public class DestinationServiceImpl implements DestinationService{
             return destinationDb.get();
         }
         else {
-            throw new DestinationExc("Record not found with id : " + destinationId);
+            Destination dest = new Destination();
+            dest.setDestId(0);
+            return dest;
         }
     }
 

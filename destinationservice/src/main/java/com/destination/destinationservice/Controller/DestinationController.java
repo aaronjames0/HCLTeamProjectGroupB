@@ -36,6 +36,7 @@ public class DestinationController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Destination> getDestinationById(@PathVariable long id) {
+        Destination dest = destinationService.getDestinationById(id);
         return ResponseEntity.ok().body(destinationService.getDestinationById(id));
     }
 
