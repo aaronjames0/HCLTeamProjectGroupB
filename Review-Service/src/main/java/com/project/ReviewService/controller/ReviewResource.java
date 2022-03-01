@@ -53,7 +53,7 @@ public class ReviewResource {
     //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     //     return new ResponseEntity<>(mapper.modelsToDto(reviews), HttpStatus.OK);
     // }
-
+    
     @GetMapping("/{reviewId}")
     public ResponseEntity<ReviewDto> getReviewById(@PathVariable long reviewId) {
         Review review = repo.findByReviewId(reviewId);
