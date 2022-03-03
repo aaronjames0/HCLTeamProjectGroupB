@@ -73,15 +73,18 @@ public class CompositeController {
     }
 
     public String getDestUrl() {
-        return System.getenv("DESTINATION_URL");
+        //return "http://localhost:8080"; //for local testing
+        return System.getenv("DESTINATION_URL");    //for live
     }
 
     public String getRecUrl() {
-        return System.getenv("RECOMMEND_URL");
+        //return "http://localhost:8082";   //for local testing
+        return System.getenv("RECOMMEND_URL");  //for live
     }
 
     public String getRevUrl() {
-        return System.getenv("REVIEW_URL");
+        //return "http://localhost:8081";   //for local testing
+        return System.getenv("REVIEW_URL");   //for live
     }
 
     private ResponseEntity<String> fall(Exception e){

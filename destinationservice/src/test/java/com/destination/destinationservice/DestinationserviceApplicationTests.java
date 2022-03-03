@@ -27,6 +27,7 @@ class DestinationserviceApplicationTests {
 	@Order(1)
 	public void testCreate() {
 		Destination dest = new Destination();
+		dest.setDestId(8080L);
 		dest.setPlace("Los Angeles");
 		dest.setCountry("United States");
 		dest.setLatitude(34.0522);
@@ -34,13 +35,13 @@ class DestinationserviceApplicationTests {
 		dest.setInfo("Hollywood is located here");
 		dest.setImage("LosAngeles.jpeg");
 		dRepo.save(dest);
-		assertNotNull(dRepo.findById(28L).get());
+		assertNotNull(dRepo.findById(8080L).get());
 	}
 
 	@Test
 	@Order(2)
 	public void testDestination() {
-		Destination dest = dRepo.findById(28L).get();
+		Destination dest = dRepo.findById(8080L).get();
 		assertEquals("Los Angeles", dest.getPlace());
 	}
 
@@ -54,17 +55,16 @@ class DestinationserviceApplicationTests {
 	@Test
 	@Order(4)
 	public void testUpdate() {
-		Destination dest = dRepo.findById(28L).get();
+		Destination dest = dRepo.findById(8080L).get();
 		dest.setImage("LA.png");
 		dRepo.save(dest);
-		assertNotEquals("Los Angeles", dRepo.findById(28L).get().getImage());
+		assertNotEquals("Los Angeles", dRepo.findById(8080L).get().getImage());
 	}
 
 	@Test
 	@Order(5)
 	public void testDelete() {
-		dRepo.deleteById(28L);
-		assertThat(dRepo.existsById(28L)).isFalse();
+		dRepo.deleteById(8080L);
+		assertThat(dRepo.existsById(8080L)).isFalse();
 	}
-
 }

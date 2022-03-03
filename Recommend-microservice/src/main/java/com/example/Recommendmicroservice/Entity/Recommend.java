@@ -4,8 +4,8 @@ package com.example.Recommendmicroservice.Entity;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Recommend {
     private long destId;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private long recommendationId;
     private String author;
     private String content;

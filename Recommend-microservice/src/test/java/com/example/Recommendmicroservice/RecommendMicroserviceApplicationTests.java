@@ -31,7 +31,7 @@ static Long Id;
 
 	@BeforeAll
 	  static void init() {
-		recommend = new Recommend(81L, 44L, "Akhil", "Salem is not known for mangoes", 5);
+		recommend = new Recommend(56L, 46L, "Akhil", "Salem is not known for mangoes", 5);
 
 		 Id = recommend.getRecommendationId();
 	}
@@ -61,7 +61,7 @@ static Long Id;
 	{
 	 Recommend recommendGet = repo.findById(Id).get();
 		 System.out.println(recommendGet);
-		assertEquals(81L,recommendGet.getDestId());
+		assertEquals(recommend.getDestId(),recommendGet.getDestId());
 	}
 
 	@Test
