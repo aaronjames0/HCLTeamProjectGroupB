@@ -28,7 +28,7 @@ public class CompositeController {
     
     private RestTemplate restTemplate = new RestTemplate();
 
-    CompositeMapper mapper = Mappers.getMapper(CompositeMapper.class);
+    //CompositeMapper mapper = Mappers.getMapper(CompositeMapper.class);
 
     @GetMapping("/destination/{destId}")
     @CircuitBreaker(name = "getdestination",fallbackMethod = "fall")
@@ -47,7 +47,11 @@ public class CompositeController {
         for(int i = 0; i < recIds.length; i++) {
             recommends.add(restTemplate.getForObject(getRecUrl()  + "/recommend/" + recIds[i], Recommend.class));
         }
-        return ResponseEntity.ok().body(mapper.mapComposite(dest, reviews, recommends));
+        Composite comp = new Composite();
+        comp.setDestination(dest);
+        comp.setRecommendations(recommends);
+        comp.setReviews(reviews);
+        return ResponseEntity.ok().body(comp);
     }
 
     @GetMapping("/user/{userId}")
@@ -66,7 +70,10 @@ public class CompositeController {
             for(int j = 0; j < recIds.length; j++) {
                 recommends.add(restTemplate.getForObject(getRecUrl() + "/recommend/" + recIds[j], Recommend.class));
             }
-            Composite comp = mapper.mapComposite(dests[i], reviews, recommends);
+            Composite comp = new Composite();
+            comp.setDestination(dests[i]);
+            comp.setRecommendations(recommends);
+            comp.setReviews(reviews);
             comps.add(comp);
         }
         return ResponseEntity.ok().body(comps);
