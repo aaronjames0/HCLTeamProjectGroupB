@@ -6,7 +6,7 @@ import java.util.List;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.SelfInjection.Split;
 
-import org.mapstruct.factory.Mappers;
+//import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.cloud.client.ServiceInstance;
