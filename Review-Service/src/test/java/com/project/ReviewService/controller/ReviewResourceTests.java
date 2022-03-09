@@ -6,6 +6,7 @@ import com.project.ReviewService.model.Review;
 import com.project.ReviewService.review.ReviewRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class ReviewResourceTests {
     ReviewResourceTests() {
 
         realReview = new Review(1, 1, "Timojim", "The place", "There's things");
-        fakeReview = new Review(8947984, 1, "Jimothy", "The place", "There's things");
+        fakeReview = new Review(8947984, 49864654, "Jimothy", "The place", "There's things");
 
         realDto.setReviewId(realReview.getReviewId());
         realDto.setDestId(realReview.getDestId());
@@ -51,6 +52,7 @@ public class ReviewResourceTests {
 
     @Test
     @DisplayName("Get All Test")
+    @Order(1)
     void getAllTest() {
         ReviewResource resource = new ReviewResource(mapper, repo);
         ResponseEntity<List<ReviewDto>> list = resource.getAllReviews();
@@ -59,6 +61,7 @@ public class ReviewResourceTests {
 
     @Test
     @DisplayName("Post Test")
+    @Order(2)
     void postTest() {
         ReviewResource resource = new ReviewResource(mapper, repo);
         ResponseEntity<Void> firstResponse = resource.insertReview(realReview);
@@ -67,6 +70,7 @@ public class ReviewResourceTests {
 
     @Test
     @DisplayName("Get by Author Test")
+    @Order(3)
     void getByAuthor() {
         ReviewResource resource = new ReviewResource(mapper, repo);
         ResponseEntity<List<ReviewDto>> trueResponse = resource.getReviewsByAuthor(realReview.getAuthor());
@@ -77,7 +81,42 @@ public class ReviewResourceTests {
     }
 
     @Test
+    @DisplayName("Update Review Test")
+    @Order(4)
+    void updateReviewTest() {
+        ReviewResource resource = new ReviewResource(mapper, repo);
+
+        ResponseEntity<List<ReviewDto>> hold = resource.getReviewsByAuthor(realReview.getAuthor());
+
+        if(hold.hasBody() && !hold.getBody().isEmpty()) {
+            realReview.setReviewId(hold.getBody().get(0).getReviewId());
+            realReview.setSubject("The OTHER Place");
+        }
+        else
+            Assertions.fail();
+
+        ResponseEntity<Void> trueResponse = resource.updateReview(realReview);
+        ResponseEntity<Void> falseResponse = resource.updateReview(fakeReview);
+
+        Assertions.assertEquals(HttpStatus.OK, trueResponse.getStatusCode());
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, falseResponse.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Get by Destination Test")
+    @Order(5)
+    void getByDestination() {
+        ReviewResource resource = new ReviewResource(mapper, repo);
+        ResponseEntity<List<ReviewDto>> trueResponse = resource.getReviewsByDestination(realReview.getDestId());
+        ResponseEntity<List<ReviewDto>> falseResponse = resource.getReviewsByDestination(fakeReview.getDestId());
+
+        Assertions.assertEquals(HttpStatus.OK, trueResponse.getStatusCode());
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, falseResponse.getStatusCode());
+    }
+
+    @Test
     @DisplayName("Delete By Author Test")
+    @Order(6)
     void deleteByAuthorTest() {
         ReviewResource resource = new ReviewResource(mapper, repo);
         ResponseEntity<Void> trueResponse = resource.deleteReviewsByAuthor(realReview.getAuthor());

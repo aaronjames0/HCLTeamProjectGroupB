@@ -24,7 +24,6 @@ public class UserResource {
         this.repo = repo;
     }
 
-    //TODO: This might be wrong.
     @PostMapping("/register")
     public ResponseEntity<Void> registerUser(@RequestBody UserDto user) {
         User hold = repo.findByName(user.getName());

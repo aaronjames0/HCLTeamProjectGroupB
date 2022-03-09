@@ -75,6 +75,7 @@ public class ReviewResource {
         repo.deleteReviewByReviewId(reviewId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @DeleteMapping("/delete/author/{author}")
     public ResponseEntity<Void> deleteReviewsByAuthor(@PathVariable String author) {
         List<Review> response = repo.findByAuthor(author);

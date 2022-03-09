@@ -6,6 +6,7 @@ import com.hcl.userservice.models.User;
 import com.hcl.userservice.repositories.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -54,6 +55,7 @@ public class UserResourceTests {
 
     @Test
     @DisplayName("Get All Test")
+    @Order(1)
     void getAllTest() {
         UserResource resource = new UserResource(mapper, repo);
         ResponseEntity<List<UserDto>> list = resource.getUsers();
@@ -62,6 +64,7 @@ public class UserResourceTests {
 
     @Test
     @DisplayName("Register Test")
+    @Order(2)
     void registerTest() {
         UserResource resource = new UserResource(mapper, repo);
         ResponseEntity<Void> firstResponse = resource.registerUser(realDto);
@@ -72,6 +75,7 @@ public class UserResourceTests {
 
     @Test
     @DisplayName("Get One Test")
+    @Order(3)
     void getOneTest() {
         UserResource resource = new UserResource(mapper, repo);
         ResponseEntity<UserDto> trueResponse = resource.getUser(realUser.getName());
@@ -83,6 +87,7 @@ public class UserResourceTests {
 
     @Test
     @DisplayName("Authenticate Test")
+    @Order(3)
     void authenticateTest() {
         UserResource resource = new UserResource(mapper, repo);
         ResponseEntity<Void> trueResponse = resource.authenticateUser(realDto);
@@ -94,6 +99,7 @@ public class UserResourceTests {
 
     @Test
     @DisplayName("Update Test")
+    @Order(4)
     void updateTest() {
         UserResource resource = new UserResource(mapper, repo);
         ResponseEntity<Void> trueResponse = resource.updateUser(realDto);
@@ -105,6 +111,7 @@ public class UserResourceTests {
 
     @Test
     @DisplayName("Delete Test")
+    @Order(5)
     void deleteTest() {
         UserResource resource = new UserResource(mapper, repo);
         ResponseEntity<Void> trueResponse = resource.deleteUser(realUser.getName());
