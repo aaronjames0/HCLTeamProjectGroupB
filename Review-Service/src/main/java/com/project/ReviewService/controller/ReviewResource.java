@@ -36,16 +36,6 @@ public class ReviewResource {
         return new ResponseEntity<>(mapper.modelsToDto(reviews), HttpStatus.OK);
     }
 
-    @GetMapping("/destination/{destId}")
-    public long[] getReviewIds(@PathVariable long destId) {
-        List<Review> reviewList = repo.findByDestId(destId);
-        long[] reviews = new long[reviewList.size()];
-        for(int i = 0; i < reviewList.size(); i++) {
-            reviews[i] = reviewList.get(i).getReviewId();
-        }
-        return reviews;
-    }
-
      @GetMapping("/destination/{destId}")
      public ResponseEntity<List<ReviewDto>> getReviewsByDestination(@PathVariable long destId) {
          List<Review> reviews = repo.findByDestId(destId);
