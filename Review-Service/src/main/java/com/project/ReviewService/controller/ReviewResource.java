@@ -37,13 +37,23 @@ public class ReviewResource {
     }
 
     @GetMapping("/destination/{destId}")
-    public ResponseEntity<List<ReviewDto>> getReviewsByDestination(@PathVariable long destId) {
-        List<Review> reviews = repo.findByDestId(destId);
-        if(reviews == null || reviews.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(mapper.modelsToDto(reviews), HttpStatus.OK);
+    public long[] getReviewIds(@PathVariable long destId) {
+        List<Review> reviewList = repo.findByDestId(destId);
+        long[] reviews = new long[reviewList.size()];
+        for(int i = 0; i < reviewList.size(); i++) {
+            reviews[i] = reviewList.get(i).getReviewId();
+        }
+        return reviews;
     }
 
+    // @GetMapping("/destination/{destId}")
+    // public ResponseEntity<List<ReviewDto>> getReviewsByDestination(@PathVariable long destId) {
+    //     List<Review> reviews = repo.findByDestId(destId);
+    //     if(reviews == null || reviews.isEmpty())
+    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     return new ResponseEntity<>(mapper.modelsToDto(reviews), HttpStatus.OK);
+    // }
+    
     @GetMapping("/{reviewId}")
     public ResponseEntity<ReviewDto> getReviewById(@PathVariable long reviewId) {
         Review review = repo.findByReviewId(reviewId);
